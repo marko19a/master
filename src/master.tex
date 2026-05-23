@@ -1,0 +1,539 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[serbian]{babel}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{tocloft}
+
+\geometry{margin=2.5cm}
+\onehalfspacing
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+
+{\Large Univerzitet Singidunum \par}
+\vspace{0.5cm}
+
+\vspace{3cm}
+
+{\Huge \textbf{ODREĐIVANJE n-TOG STEPENA CIRKULARNIH MATRICA ČIJI SU ELEMENTI POZNATI NIZOVI} \par}
+
+\vspace{3cm}
+
+\begin{flushleft}
+\large
+Mentor: prof. dr Biljana Radičić
+
+\vspace{1cm}
+
+Kandidat: Marko Milošević
+\end{flushleft}
+
+\vfill
+
+{\large Beograd, 2026.}
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\chapter{Uvod}
+
+Cirkularne matrice predstavljaju posebnu klasu matrica koje imaju značajnu primenu u linearnoj algebri, teoriji signala, obradi slike, numeričkoj matematici i teoriji diskretnih sistema. Njihova osnovna karakteristika jeste da je svaki naredni red dobijen cikličnim pomeranjem prethodnog reda za jedno mesto.
+
+Poseban značaj cirkularnih matrica proizilazi iz činjenice da se njihove sopstvene vrednosti i sopstveni vektori mogu eksplicitno odrediti korišćenjem korena jedinice i Furijeove transformacije.
+
+U ovom radu razmatraće se određivanje n-tog stepena cirkularnih matrica čiji su elementi definisani pomoću poznatih nizova:
+
+\begin{itemize}
+    \item aritmetičkog niza,
+    \item geometrijskog niza,
+    \item Fibonačijevog niza.
+\end{itemize}
+
+Cilj rada jeste izvođenje opštih formula za određivanje stepena cirkularnih matrica i analiza njihovog ponašanja.
+
+\chapter{Osnovni pojmovi i definicije}
+
+\section{Matrice}
+
+Matrica reda $m \times n$ predstavlja pravougaoni raspored elemenata:
+
+\[
+A = [a_{ij}]_{m \times n}.
+\]
+
+Kvadratna matrica reda $n$ ima jednak broj vrsta i kolona.
+
+\section{Stepen matrice}
+
+Za kvadratnu matricu $A$ definiše se:
+
+\[
+A^n = \underbrace{A \cdot A \cdot \dots \cdot A}_{n\text{ puta}}.
+\]
+
+Za $n=0$ važi:
+
+\[
+A^0 = I,
+\]
+
+gde je $I$ jedinična matrica.
+
+\section{Poznati nizovi}
+
+\subsection{Aritmetički niz}
+
+Aritmetički niz definisan je formulom:
+
+\[
+a_n = a_1 + (n-1)d.
+\]
+
+\subsection{Geometrijski niz}
+
+Geometrijski niz definisan je formulom:
+
+\[
+a_n = a_1 q^{n-1}.
+\]
+
+\subsection{Fibonačijev niz}
+
+Fibonačijev niz definiše se rekurentno:
+
+\[
+F_n = F_{n-1} + F_{n-2},
+\]
+
+uz početne uslove:
+
+\[
+F_0 = 0, \qquad F_1 = 1.
+\]
+
+\chapter{Cirkularne matrice}
+
+\section{Definicija}
+
+Cirkularna matrica reda $n$ definiše se kao:
+
+\[
+C = \operatorname{circ}(c_0,c_1,c_2,\dots,c_{n-1}).
+\]
+
+Opšti oblik cirkularne matrice je:
+
+\[
+C=
+\begin{bmatrix}
+c_0 & c_1 & c_2 & \cdots & c_{n-1}\\
+c_{n-1} & c_0 & c_1 & \cdots & c_{n-2}\\
+\vdots & \vdots & \vdots & \ddots & \vdots\\
+c_1 & c_2 & c_3 & \cdots & c_0
+\end{bmatrix}.
+\]
+
+\section{Osnovna svojstva}
+
+Važe sledeća svojstva:
+
+\begin{enumerate}
+    \item zbir dve cirkularne matrice je cirkularna matrica,
+    \item proizvod dve cirkularne matrice je cirkularna matrica,
+    \item inverzna matrica cirkularne matrice je takođe cirkularna,
+    \item cirkularne matrice međusobno komutiraju.
+\end{enumerate}
+
+\section{Veza sa Furijeovom transformacijom}
+
+Cirkularne matrice dijagonalizuju se pomoću Furijeove matrice:
+
+\[
+C = F^{-1}DF,
+\]
+
+gde je:
+
+\begin{itemize}
+    \item $F$ Furijeova matrica,
+    \item $D$ dijagonalna matrica sopstvenih vrednosti.
+\end{itemize}
+
+\chapter{Sopstvene vrednosti i sopstveni vektori}
+
+Neka je:
+
+\[
+C = \operatorname{circ}(c_0,c_1,\dots,c_{n-1}).
+\]
+
+Sopstvene vrednosti matrice određuju se formulom:
+
+\[
+\lambda_k = \sum_{j=0}^{n-1} c_j \omega_n^{jk},
+\]
+
+gde je:
+
+\[
+\omega_n = e^{\frac{2\pi i}{n}}.
+\]
+
+Sopstveni vektori imaju oblik:
+
+\[
+v_k = (1,\omega_n^k,\omega_n^{2k},\dots,\omega_n^{(n-1)k}).
+\]
+
+Pošto su cirkularne matrice dijagonalizabilne:
+
+\[
+C^m = F^{-1}D^mF.
+\]
+
+\chapter{Određivanje n-tog stepena cirkularnih matrica}
+
+Neka je:
+
+\[
+C = F^{-1}DF.
+\]
+
+Tada važi:
+
+\[
+C^n = F^{-1}D^nF.
+\]
+
+Pošto je:
+
+\[
+D = \operatorname{diag}(\lambda_0,\lambda_1,\dots,\lambda_{n-1}),
+\]
+
+sledi:
+
+\[
+D^n = \operatorname{diag}(\lambda_0^n,\lambda_1^n,\dots,\lambda_{n-1}^n).
+\]
+
+Dakle, određivanje n-tog stepena matrice svodi se na stepenovanje sopstvenih vrednosti.
+
+\chapter{Cirkularne matrice sa elementima aritmetičkog niza}
+
+Razmatrajmo matricu:
+
+\[
+A = \operatorname{circ}(a,a+d,a+2d).
+\]
+
+Njena forma je:
+
+\[
+A=
+\begin{bmatrix}
+a & a+d & a+2d \\
+a+2d & a & a+d \\
+a+d & a+2d & a
+\end{bmatrix}.
+\]
+
+\section{Sopstvene vrednosti}
+
+Dobijamo:
+
+\[
+\lambda_k = a + (a+d)\omega^k + (a+2d)\omega^{2k}.
+\]
+
+Za $k=0$:
+
+\[
+\lambda_0 = 3a+3d.
+\]
+
+\section{Primer}
+
+Neka je:
+
+\[
+a=1, \qquad d=1.
+\]
+
+Tada je:
+
+\[
+A = \operatorname{circ}(1,2,3).
+\]
+
+Odnosno:
+
+\[
+A=
+\begin{bmatrix}
+1 & 2 & 3 \\
+3 & 1 & 2 \\
+2 & 3 & 1
+\end{bmatrix}.
+\]
+
+Računamo:
+
+\[
+A^2=
+\begin{bmatrix}
+13 & 13 & 10 \\
+10 & 13 & 13 \\
+13 & 10 & 13
+\end{bmatrix}.
+\]
+
+\chapter{Cirkularne matrice sa elementima geometrijskog niza}
+
+Posmatrajmo matricu:
+
+\[
+G = \operatorname{circ}(a,aq,aq^2).
+\]
+
+Odnosno:
+
+\[
+G=
+\begin{bmatrix}
+a & aq & aq^2 \\
+aq^2 & a & aq \\
+aq & aq^2 & a
+\end{bmatrix}.
+\]
+
+Sopstvene vrednosti su:
+
+\[
+\lambda_k = a(1+q\omega^k+q^2\omega^{2k}).
+\]
+
+\section{Primer}
+
+Neka je:
+
+\[
+a=1, \qquad q=2.
+\]
+
+Tada je:
+
+\[
+G = \operatorname{circ}(1,2,4).
+\]
+
+Kvadrat matrice iznosi:
+
+\[
+G^2=
+\begin{bmatrix}
+17 & 20 & 16 \\
+16 & 17 & 20 \\
+20 & 16 & 17
+\end{bmatrix}.
+\]
+
+\chapter{Cirkularne matrice sa elementima Fibonačijevog niza}
+
+Razmatrajmo matricu reda 4:
+
+\[
+F = \operatorname{circ}(F_1,F_2,F_3,F_4).
+\]
+
+Pošto su:
+
+\[
+F_1=1, \quad F_2=1, \quad F_3=2, \quad F_4=3,
+\]
+
+dobijamo:
+
+\[
+F = \operatorname{circ}(1,1,2,3).
+\]
+
+Odnosno:
+
+\[
+F=
+\begin{bmatrix}
+1 & 1 & 2 & 3 \\
+3 & 1 & 1 & 2 \\
+2 & 3 & 1 & 1 \\
+1 & 2 & 3 & 1
+\end{bmatrix}.
+\]
+
+\section{Sopstvene vrednosti}
+
+Koreni jedinice četvrtog reda su:
+
+\[
+1,-1,i,-i.
+\]
+
+Dobijamo:
+
+\[
+\lambda_0 = 7,
+\]
+
+\[
+\lambda_1 = -1,
+\]
+
+\[
+\lambda_2 = -1+i,
+\]
+
+\[
+\lambda_3 = -1-i.
+\]
+
+\section{Kvadrat matrice}
+
+\[
+F^2=
+\begin{bmatrix}
+14 & 14 & 15 & 11 \\
+11 & 14 & 14 & 15 \\
+15 & 11 & 14 & 14 \\
+14 & 15 & 11 & 14
+\end{bmatrix}.
+\]
+
+\chapter{Primeri matrica reda 3 i 4}
+
+\section{Primer matrice reda 3}
+
+Neka je:
+
+\[
+B = \operatorname{circ}(2,3,4).
+\]
+
+Tada je:
+
+\[
+B=
+\begin{bmatrix}
+2 & 3 & 4 \\
+4 & 2 & 3 \\
+3 & 4 & 2
+\end{bmatrix}.
+\]
+
+Računamo:
+
+\[
+B^2=
+\begin{bmatrix}
+28 & 28 & 25 \\
+25 & 28 & 28 \\
+28 & 25 & 28
+\end{bmatrix}.
+\]
+
+\section{Primer matrice reda 4}
+
+Neka je:
+
+\[
+C = \operatorname{circ}(1,2,3,4).
+\]
+
+Odnosno:
+
+\[
+C=
+\begin{bmatrix}
+1 & 2 & 3 & 4 \\
+4 & 1 & 2 & 3 \\
+3 & 4 & 1 & 2 \\
+2 & 3 & 4 & 1
+\end{bmatrix}.
+\]
+
+Kvadrat matrice:
+
+\[
+C^2=
+\begin{bmatrix}
+30 & 24 & 22 & 24 \\
+24 & 30 & 24 & 22 \\
+22 & 24 & 30 & 24 \\
+24 & 22 & 24 & 30
+\end{bmatrix}.
+\]
+
+\chapter{Primene cirkularnih matrica}
+
+Cirkularne matrice imaju značajnu primenu u:
+
+\begin{itemize}
+    \item obradi digitalnih signala,
+    \item teoriji kodovanja,
+    \item numeričkoj analizi,
+    \item obradi slike,
+    \item kriptografiji,
+    \item rešavanju diferencnih jednačina.
+\end{itemize}
+
+Njihova glavna prednost jeste mogućnost efikasnog računanja pomoću Furijeove transformacije.
+
+\chapter{Zaključak}
+
+U radu su analizirane cirkularne matrice čiji su elementi definisani pomoću poznatih nizova. Pokazano je da se određivanje n-tog stepena matrice može efikasno izvršiti korišćenjem dijagonalizacije.
+
+Razmatrani su slučajevi:
+
+\begin{itemize}
+    \item aritmetičkog niza,
+    \item geometrijskog niza,
+    \item Fibonačijevog niza.
+\end{itemize}
+
+Analizirani primeri reda 3 i 4 pokazali su da se struktura cirkularnih matrica zadržava i nakon stepenovanja.
+
+Dalja istraživanja mogu obuhvatiti:
+
+\begin{itemize}
+    \item matrice višeg reda,
+    \item druge poznate nizove,
+    \item numeričke algoritme za brzo računanje stepena.
+\end{itemize}
+
+\chapter{Literatura}
+
+\begin{enumerate}
+    \item Davis, P. J., \textit{Circulant Matrices}, Wiley, New York, 1979.
+
+    \item Horn, R. A., Johnson, C. R., \textit{Matrix Analysis}, Cambridge University Press, 2012.
+
+    \item Gray, R. M., \textit{Toeplitz and Circulant Matrices: A Review}, Now Publishers Inc., 2006.
+
+    \item Strang, G., \textit{Linear Algebra and Its Applications}, Brooks/Cole, 2006.
+
+    \item Koshy, T., \textit{Fibonacci and Lucas Numbers with Applications}, Wiley, 2001.
+
+    \item Meyer, C. D., \textit{Matrix Analysis and Applied Linear Algebra}, SIAM, 2000.
+\end{enumerate}
+
+\end{document}
