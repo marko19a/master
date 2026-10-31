@@ -14,6 +14,8 @@
 \geometry{margin=2.5cm}
 \onehalfspacing
 
+\DeclareUnicodeCharacter{2260}{\ensuremath{\neq}}
+
 \begin{document}
 
 \begin{titlepage}
@@ -66,81 +68,236 @@ Cilj rada jeste izvođenje opštih formula za određivanje stepena cirkularnih m
 
 \section{Matrice}
 
-Matrica reda $m \times n$ predstavlja pravougaoni raspored elemenata:
-
+Matrica je pravougaona tabela elemenata raspoređenih u $m$
+vrsta i $n$ kolona, koja se označava sa
 \[
-A = [a_{ij}]_{m \times n}.
+A=(a_{ij})_{m\times n}
+\]
+i ima oblik
+\[
+A=
+\begin{pmatrix}
+	a_{11} & a_{12} & \cdots & a_{1n}\\
+	a_{21} & a_{22} & \cdots & a_{2n}\\
+	\vdots & \vdots & \ddots & \vdots\\
+	a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix},
+\]
+gde je $a_{ij}$ element matrice $A$ koji se nalazi u $i$-toj
+vrsti i $j$-toj koloni.
+
+Skup svih matrica dimenzije $m\times n$ sa elementima iz skupa
+$\mathbb{K}$ označava se sa
+\[
+\mathbb{K}^{m\times n}.
 \]
 
 Kvadratna matrica reda $n$ ima jednak broj vrsta i kolona.
 
+
+Jedninčna matrica $I$ je kvadratna matrica kojoj su elementi na glavnoj dijagonali jedinice, a ostali nule.
+
+\[
+I=
+\begin{pmatrix}
+	1 & 0 & \cdots & 0\\
+	0 & 1 & \cdots &0\\
+	\vdots & \vdots & \ddots & \vdots\\
+	0 & 0 & \cdots & 1
+\end{pmatrix}
+\]
+
 \section{Stepen matrice}
 
-Za kvadratnu matricu $A$ definiše se:
+Neka je $A\in\mathbb{K}^{n\times n}$ kvadratna matrica.
+Stepen matrice definiše se kao ponovljeno množenje matrice
+same sa sobom.
 
+
+Za kvadratnu matricu $A$ i prirodan broj $k\geq 1$,
+$k$-ti stepen matrice $A$ definiše se kao
 \[
-A^n = \underbrace{A \cdot A \cdot \dots \cdot A}_{n\text{ puta}}.
+A^k =
+\underbrace{A\cdot A\cdot \dots \cdot A}_{k\text{ puta}}.
+\]
+Za $k=0$ definiše se
+\[
+A^0=I,
+\]
+gde je $I$ jedinična matrica istog reda kao matrica $A$.
+
+
+Prema tome, prvi stepen matrice jednak je samoj matrici,
+dok su naredni stepeni određeni rekurzivno:
+\[
+A^1=A,
+\]
+\[
+A^2=A\cdot A,
+\]
+\[
+A^3=A\cdot A\cdot A,
+\]
+i uopšteno
+\[
+A^{k+1}=A^k\cdot A,\qquad k\geq 0.
 \]
 
-Za $n=0$ važi:
+\subsection{Osobine stepena matrice}
 
+Za kvadratnu matricu $A$ i nenegativne cele brojeve $m,n$
+važe sledeće osobine:
+
+\begin{enumerate}
+	\item \textbf{Proizvod stepena iste matrice}
+	\[
+	A^m\cdot A^n=A^{m+n}.
+	\]
+	
+	\item \textbf{Stepen stepena matrice}
+	\[
+	(A^m)^n=A^{mn}.
+	\]
+	
+	\item \textbf{Stepen proizvoda matrica}
+	
+	Za dve kvadratne matrice $A$ i $B$ istog reda koje
+	međusobno komutiraju, odnosno za koje važi $AB=BA$,
+	imamo
+	\[
+	(AB)^n=A^nB^n.
+	\]
+	
+	U opštem slučaju, kada matrice $A$ i $B$ ne komutiraju,
+	ova jednakost ne mora da važi.
+	
+	\item \textbf{Stepen jedinične matrice}
+	\[
+	I^n=I.
+	\]
+	
+	\item \textbf{Stepen nulte matrice}
+	
+	Za $n\geq 1$ važi
+	\[
+	0^n=0,
+	\]
+	dok je
+	\[
+	0^0=I
+	\]
+	prema definiciji nultog stepena matrice.
+\end{enumerate}
+
+\subsection{Negativni stepeni matrice}
+
+Ako je matrica $A$ regularna, odnosno ako postoji njena
+inverzna matrica $A^{-1}$, definišu se i negativni stepeni:
 \[
-A^0 = I,
+A^{-n}=(A^{-1})^n,\qquad n\geq 1.
 \]
 
-gde je $I$ jedinična matrica.
+Na primer,
+\[
+A^{-1}=A^{-1},
+\]
+\[
+A^{-2}=A^{-1}\cdot A^{-1},
+\]
+\[
+A^{-3}=A^{-1}\cdot A^{-1}\cdot A^{-1}.
+\]
+
+Za regularnu matricu $A$ i cele brojeve $m,n$ važi:
+\[
+A^m\cdot A^n=A^{m+n},
+\]
+\[
+(A^m)^n=A^{mn}.
+\]
 
 \section{Poznati nizovi}
 
 \subsection{Aritmetički niz}
 
-Aritmetički niz definisan je formulom:
+Aritmetički niz (ili aritmetička progresija) je niz brojeva u kojem je razlika svakog člana i njegovog prethodnika stalan broj.
 
-\[
-a_n = a_1 + (n-1)d.
-\]
+Aritmetički niz u kome je svaki sledeći član za $3$ veći od prethodnog:
+\[3, 6, 9, 12, 15, \dots\]
+
+\subsection{Osnovne karakteristike aritmetičkog niza}
+
+\begin{enumerate}
+	\item Prvi član niza: Obeležava se sa $a_1$ i predstavlja početnu vrednost niza.
+	\item Diferencija (razlika niza): Obeležava se sa $d$ i predstavlja stalnu razliku između bilo koja dva uzastopna člana:
+	\[d = a_n - a_{n-1}\]
+	\item Opšti član ($n$-ti član): Omogućava izračunavanje bilo kog člana niza na osnovu prvog člana i diferencije:
+	\[a_n = a_1 + (n - 1)d\]
+	\item Suma prvih $n$ članova ($S_n$): Predstavlja zbir prvih $n$ uzastopnih članova niza i može se izračunati preko jedne od sledećih formula:
+	\[S_n = \frac{n}{2} (a_1 + a_n)\]
+	\[S_n = \frac{n}{2} [2a_1 + (n - 1)d]\]
+\end{enumerate}
 
 \subsection{Geometrijski niz}
 
-Geometrijski niz definisan je formulom:
+Geometrijski niz (ili geometrijska progresija) je niz brojeva u kojem je količnik svakog člana i njegovog prethodnika stalan broj. Taj konstantan broj se naziva količnik (ili kvocijent) niza i najčešće se obeležava slovom q. To znači da se svaki sledeći član niza dobija množenjem prethodnog člana tim stalnim brojem q (uz uslov da je q ≠ 0 i q ≠ 1).
 
-\[
-a_n = a_1 q^{n-1}.
-\]
+Geometrijski niz u kome se svaki sledeći član dobija množenjem prethodnog brojem $2$:
+\[2, 4, 8, 16, 32, \dots\]
+
+\subsection{Osnovne karakteristike geometrijskog niza}
+
+\begin{enumerate}
+	\item Prvi član niza: Obeležava se sa $b_1$ (ili $a_1$) i predstavlja početnu vrednost niza.
+	\item Količnik niza (kocijent): Obeležava se sa $q$ i predstavlja stalan odnos (količnik) između bilo kog člana i njegovog prethodnika:
+	\[q = \frac{b_n}{b_{n-1}} \quad (q \neq 0, q \neq 1)\]
+	\item Opšti član ($n$-ti član): Omogućava izračunavanje bilo kog člana niza na osnovu prvog člana i količnika:
+	\[b_n = b_1 \cdot q^{n-1}\]
+	\item Suma prvih $n$ članova ($S_n$): Predstavlja zbir prvih $n$ uzastopnih članova niza i računa se formulom:
+	\[S_n = b_1 \cdot \frac{1 - q^n}{1 - q} \quad \text{ili} \quad S_n = b_1 \cdot \frac{q^n - 1}{q - 1}\]
+\end{enumerate}
 
 \subsection{Fibonačijev niz}
 
-Fibonačijev niz definiše se rekurentno:
+Fibonačijev niz je niz brojeva u kojem je svaki član (počevši od trećeg) jednak zbiru prethodna dva člana. Niz standardno počinje brojevima 0 i 1.
 
-\[
-F_n = F_{n-1} + F_{n-2},
-\]
+Fibonačijev niz koji počinje sa $0$ i $1$, gde je svaki sledeći član zbir prethodna dva:
+\[0, 1, 1, 2, 3, 5, 8, 13, 21, \dots\]
 
-uz početne uslove:
+\subsection{Osnovne karakteristike Fibonačijevog niza}
 
-\[
-F_0 = 0, \qquad F_1 = 1.
-\]
+\begin{enumerate}
+	\item Definicija: Niz je zadat rekurentnom relacijom gde je svaki član zbir prethodna dva:
+	\[F_0 = 0, \quad F_1 = 1, \quad F_n = F_{n-1} + F_{n-2} \quad (\text{za } n \ge 2)\]
+	\item Zlatni presek: Granična vrednost količnika dva uzastopna člana teži broju $\phi$:
+	\[\lim_{n \to \infty} \frac{F_n}{F_{n-1}} = \phi = \frac{1+\sqrt{5}}{2} \approx 1.618\]
+	\item Binetova formula (Eksplicitni oblik): Omogućava direktno računanje $n$-tog člana niza:
+	\[F_n = \frac{1}{\sqrt{5}} \left[ \left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n \right]\]
+	\item Suma prvih $n$ članova: Zbir članova se elegantno računa preko formule:
+	\[S_n = \sum_{i=1}^{n} F_i = F_{n+2} - 1\]
+\end{enumerate}
+
 
 \chapter{Cirkularne matrice}
 
 \section{Definicija}
 
-Cirkularna matrica reda $n$ definiše se kao:
-
-\[
-C = \operatorname{circ}(c_0,c_1,c_2,\dots,c_{n-1}).
-\]
+Cirkularna matrica je u potpunosti određena svojom prvom vrstom, odnosno
+kolonom, pa je kraće označavamo $C_{c_0, c_1, c_2, \dots, c_{n-1}} = (c_0, c_1, c_2, \dots, c_{n-1})$. Kao
+što se može primetiti, cirkularne matrice imaju konstantne vrednosti na svakoj
+dijagonali koja je paralelna sa glavnom dijagonalom. Ono što nas najviše interesuje
+u vezi cirkularnih matrica je jednostavno izračunavanje njihovih sopstvenih
+vrednosti i sopstvenih vektora korišćenjem n-tog korena iz jedinice.
 
 Opšti oblik cirkularne matrice je:
 
 \[
 C=
 \begin{bmatrix}
-c_0 & c_1 & c_2 & \cdots & c_{n-1}\\
-c_{n-1} & c_0 & c_1 & \cdots & c_{n-2}\\
-\vdots & \vdots & \vdots & \ddots & \vdots\\
-c_1 & c_2 & c_3 & \cdots & c_0
+	c_0 & c_1 & c_2 & \cdots & c_{n-1}\\
+	c_{n-1} & c_0 & c_1 & \cdots & c_{n-2}\\
+	\vdots & \vdots & \vdots & \ddots & \vdots\\
+	c_1 & c_2 & c_3 & \cdots & c_0
 \end{bmatrix}.
 \]
 
@@ -155,20 +312,268 @@ Važe sledeća svojstva:
     \item cirkularne matrice međusobno komutiraju.
 \end{enumerate}
 
-\section{Veza sa Furijeovom transformacijom}
 
-Cirkularne matrice dijagonalizuju se pomoću Furijeove matrice:
-
+Neka su $A,B\in\mathbb{C}^{n\times n}$ dve cirkularne matrice.
+Cirkularne matrice su određene svojim prvim redovima, pa se mogu
+predstaviti u obliku
 \[
-C = F^{-1}DF,
+A=a_0I+a_1P+\cdots+a_{n-1}P^{n-1},
 \]
+\[
+B=b_0I+b_1P+\cdots+b_{n-1}P^{n-1},
+\]
+gde je $I$ jedinična matrica, a $P$ cirkularna permutaciona matrica
+koja zadovoljava $P^n=I$.
 
-gde je:
+\begin{enumerate}
+	
+	% 1
+	\item \textbf{Zbir dve cirkularne matrice je cirkularna matrica.}
+	
+	Zbir matrica $A$ i $B$ je
+	\[
+	A+B
+	=
+	\sum_{k=0}^{n-1}a_kP^k
+	+
+	\sum_{k=0}^{n-1}b_kP^k.
+	\]
+	
+	Grupisanjem članova dobijamo
+	\[
+	A+B
+	=
+	\sum_{k=0}^{n-1}(a_k+b_k)P^k.
+	\]
+	
+	Kako je zbir ponovo linearna kombinacija stepena matrice $P$,
+	sledi da je $A+B$ cirkularna matrica.
+	
+	\[
+	\boxed{A+B\text{ je cirkularna matrica.}}
+	\]
+	
+	% 2
+	\item \textbf{Proizvod dve cirkularne matrice je cirkularna matrica.}
+	
+	Proizvod matrica $A$ i $B$ je
+	\[
+	AB
+	=
+	\left(\sum_{i=0}^{n-1}a_iP^i\right)
+	\left(\sum_{j=0}^{n-1}b_jP^j\right).
+	\]
+	
+	Razvijanjem proizvoda dobijamo
+	\[
+	AB
+	=
+	\sum_{i=0}^{n-1}\sum_{j=0}^{n-1}
+	a_ib_jP^{i+j}.
+	\]
+	
+	Pošto važi $P^n=I$, svaki stepen $P^{i+j}$ može se
+	svesti na jedan od stepena
+	\[
+	I,P,P^2,\ldots,P^{n-1}.
+	\]
+	
+	Prema tome, proizvod $AB$ može se zapisati kao
+	\[
+	AB=\sum_{k=0}^{n-1}c_kP^k,
+	\]
+	gde su $c_k$ odgovarajući koeficijenti.
+	
+	Dakle, $AB$ je cirkularna matrica.
+	
+	\[
+	\boxed{AB\text{ je cirkularna matrica.}}
+	\]
+	
+	% 3
+	\item \textbf{Inverzna matrica cirkularne matrice je cirkularna.}
+	
+	Neka je $A$ regularna cirkularna matrica. Tada postoji
+	matrica $A^{-1}$ takva da važi
+	\[
+	AA^{-1}=A^{-1}A=I.
+	\]
+	
+	Svaka cirkularna matrica komutira sa matricom $P$, pa je
+	\[
+	AP=PA.
+	\]
+	
+	Množenjem ove jednakosti sleva i zdesna matricom $A^{-1}$
+	dobijamo
+	\[
+	A^{-1}AP A^{-1}=A^{-1}PA.
+	\]
+	
+	Kako je $AA^{-1}=A^{-1}A=I$, sledi
+	\[
+	PA^{-1}=A^{-1}P.
+	\]
+	
+	Dakle, $A^{-1}$ komutira sa matricom $P$.
+	
+	Poznato je da su sve matrice koje komutiraju sa cikličnom
+	permutacionom matricom $P$ cirkularne matrice. Prema tome,
+	$A^{-1}$ je cirkularna matrica.
+	
+	\[
+	\boxed{A^{-1}\text{ je cirkularna matrica.}}
+	\]
+	
+	% 4
+	\item \textbf{Cirkularne matrice međusobno komutiraju.}
+	
+	Neka su $A$ i $B$ dve cirkularne matrice:
+	\[
+	A=\sum_{i=0}^{n-1}a_iP^i,
+	\qquad
+	B=\sum_{j=0}^{n-1}b_jP^j.
+	\]
+	
+	Tada je
+	\[
+	AB
+	=
+	\sum_{i=0}^{n-1}\sum_{j=0}^{n-1}
+	a_ib_jP^{i+j}.
+	\]
+	
+	S druge strane,
+	\[
+	BA
+	=
+	\sum_{j=0}^{n-1}\sum_{i=0}^{n-1}
+	b_ja_iP^{j+i}.
+	\]
+	
+	Pošto su koeficijenti skalari, važi
+	\[
+	a_ib_j=b_ja_i,
+	\]
+	a za stepene iste matrice $P$ važi
+	\[
+	P^{i+j}=P^{j+i}.
+	\]
+	
+	Zato dobijamo
+	\[
+	AB=BA.
+	\]
+	
+	Dakle, cirkularne matrice međusobno komutiraju.
+	
+	\[
+	\boxed{AB=BA.}
+	\]
+\end{enumerate}
 
-\begin{itemize}
-    \item $F$ Furijeova matrica,
-    \item $D$ dijagonalna matrica sopstvenih vrednosti.
-\end{itemize}
+
+\chapter{Furijeova matrica}
+
+\section{Definicija}
+
+Fourierova matrica (DFT matrica) je kvadratna matrica $F_n$ reda $n \times n$
+sa elementima
+\begin{equation}
+	F_{jk} = e^{2\pi i jk/n} = \omega^{jk}, \qquad j,k = 0,1,2,\dots,n-1,
+\end{equation}
+gde je $i=\sqrt{-1}$ i $\omega = e^{2\pi i/n}$. Matrica se normalizuje
+faktorom $1/\sqrt{n}$ kako bi bila unitarna.
+
+\section{Primeri}
+
+Za $n=2$:
+\begin{equation}
+	F_2 = \frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 & 1 \\
+		1 & i^2
+	\end{pmatrix}.
+\end{equation}
+
+Za $n=4$:
+\begin{align}
+	F_4 &= \frac{1}{\sqrt{4}}
+	\begin{pmatrix}
+		1 & 1   & 1   & 1   \\
+		1 & i   & i^2 & i^3 \\
+		1 & i^2 & i^4 & i^6 \\
+		1 & i^3 & i^6 & i^9
+	\end{pmatrix} \\[1ex]
+	&= \frac{1}{2}
+	\begin{pmatrix}
+		1 & 0 & 1  & 0  \\
+		0 & 1 & 0  & i  \\
+		1 & 0 & -1 & 0  \\
+		0 & 1 & 0  & -i
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 & 1   & 0 & 0   \\
+		1 & i^2 & 0 & 0   \\
+		0 & 0   & 1 & 1   \\
+		0 & 0   & 1 & i^2
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 & 0 & 0 & 0 \\
+		0 & 0 & 1 & 0 \\
+		0 & 1 & 0 & 0 \\
+		0 & 0 & 0 & 1
+	\end{pmatrix}.
+\end{align}
+
+\section{Opšta faktorizacija}
+
+\begin{equation}
+	F_{2n} =
+	\begin{pmatrix}
+		I_n & D_n \\
+		I_n & -D_n
+	\end{pmatrix}
+	\begin{pmatrix}
+		F_n & 0 \\
+		0   & F_n
+	\end{pmatrix}
+	\begin{pmatrix}
+		\text{parno-neparno} \\
+		\text{premeštanje}
+	\end{pmatrix},
+\end{equation}
+pri čemu se središnji faktor dalje rastavlja:
+\begin{equation}
+	\begin{split}
+		\begin{pmatrix}
+			F_n & 0 \\
+			0   & F_n
+		\end{pmatrix}
+		&= \begin{pmatrix}
+			I_{n/2} & D_{n/2} & & \\
+			I_{n/2} & -D_{n/2} & & \\
+			& & I_{n/2} & D_{n/2} \\
+			& & I_{n/2} & -D_{n/2}
+		\end{pmatrix} \\
+		&\quad \times \begin{pmatrix}
+			F_{n/2} & & & \\
+			& F_{n/2} & & \\
+			& & F_{n/2} & \\
+			& & & F_{n/2}
+		\end{pmatrix}
+		\begin{pmatrix}
+			\text{parno-neparno},\ 0,2 \pmod 4 \\
+			\text{parno-neparno},\ 1,3 \pmod 4
+		\end{pmatrix}.
+	\end{split}
+\end{equation}
+
+Ovde je $I_n$ jedinična matrica reda $n$, a $D_n$ dijagonalna matrica sa
+elementima $1, \omega, \dots, \omega^{n-1}$ na dijagonali. Ova faktorizacija
+je osnova brze Fourierove transformacije (FFT). U središnjem faktoru se
+dve kopije matrice $F_2$ pojavljuju u slučaju $F_4$.
+
 
 \chapter{Sopstvene vrednosti i sopstveni vektori}
 
@@ -203,6 +608,13 @@ C^m = F^{-1}D^mF.
 \]
 
 \chapter{Određivanje n-tog stepena cirkularnih matrica}
+
+\section{Veza sa Furijeovom transformacijom}
+
+Cirkularne matrice imaju posebnu osobinu da se mogu dijagonalizovati
+pomoću Furijeove matrice. Ova osobina omogućava da se operacije nad
+cirkularnim matricama svedu na jednostavnije operacije nad
+dijagonalnim matricama.
 
 Neka je:
 
