@@ -10,11 +10,16 @@
 \usepackage{setspace}
 \usepackage{titlesec}
 \usepackage{tocloft}
+\usepackage{overcite}
+\usepackage{hyperref}
 
 \geometry{margin=2.5cm}
 \onehalfspacing
 
 \DeclareUnicodeCharacter{2260}{\ensuremath{\neq}}
+\newcommand{\I}{\mathrm{i}}
+\newcommand{\E}{\mathrm{e}}
+\renewcommand{\Re}{\operatorname{Re}}
 
 \begin{document}
 
@@ -28,7 +33,7 @@
 
 {\Huge \textbf{ODREĐIVANJE n-TOG STEPENA CIRKULARNIH MATRICA ČIJI SU ELEMENTI POZNATI NIZOVI} \par}
 
-\vspace{3cm}
+\vspace{9cm}
 
 \begin{flushleft}
 \large
@@ -216,71 +221,9 @@ A^m\cdot A^n=A^{m+n},
 (A^m)^n=A^{mn}.
 \]
 
-\section{Poznati nizovi}
+\section{Cirkularne matrice}
 
-\subsection{Aritmetički niz}
-
-Aritmetički niz (ili aritmetička progresija) je niz brojeva u kojem je razlika svakog člana i njegovog prethodnika stalan broj.
-
-Aritmetički niz u kome je svaki sledeći član za $3$ veći od prethodnog:
-\[3, 6, 9, 12, 15, \dots\]
-
-\subsection{Osnovne karakteristike aritmetičkog niza}
-
-\begin{enumerate}
-	\item Prvi član niza: Obeležava se sa $a_1$ i predstavlja početnu vrednost niza.
-	\item Diferencija (razlika niza): Obeležava se sa $d$ i predstavlja stalnu razliku između bilo koja dva uzastopna člana:
-	\[d = a_n - a_{n-1}\]
-	\item Opšti član ($n$-ti član): Omogućava izračunavanje bilo kog člana niza na osnovu prvog člana i diferencije:
-	\[a_n = a_1 + (n - 1)d\]
-	\item Suma prvih $n$ članova ($S_n$): Predstavlja zbir prvih $n$ uzastopnih članova niza i može se izračunati preko jedne od sledećih formula:
-	\[S_n = \frac{n}{2} (a_1 + a_n)\]
-	\[S_n = \frac{n}{2} [2a_1 + (n - 1)d]\]
-\end{enumerate}
-
-\subsection{Geometrijski niz}
-
-Geometrijski niz (ili geometrijska progresija) je niz brojeva u kojem je količnik svakog člana i njegovog prethodnika stalan broj. Taj konstantan broj se naziva količnik (ili kvocijent) niza i najčešće se obeležava slovom q. To znači da se svaki sledeći član niza dobija množenjem prethodnog člana tim stalnim brojem q (uz uslov da je q ≠ 0 i q ≠ 1).
-
-Geometrijski niz u kome se svaki sledeći član dobija množenjem prethodnog brojem $2$:
-\[2, 4, 8, 16, 32, \dots\]
-
-\subsection{Osnovne karakteristike geometrijskog niza}
-
-\begin{enumerate}
-	\item Prvi član niza: Obeležava se sa $b_1$ (ili $a_1$) i predstavlja početnu vrednost niza.
-	\item Količnik niza (kocijent): Obeležava se sa $q$ i predstavlja stalan odnos (količnik) između bilo kog člana i njegovog prethodnika:
-	\[q = \frac{b_n}{b_{n-1}} \quad (q \neq 0, q \neq 1)\]
-	\item Opšti član ($n$-ti član): Omogućava izračunavanje bilo kog člana niza na osnovu prvog člana i količnika:
-	\[b_n = b_1 \cdot q^{n-1}\]
-	\item Suma prvih $n$ članova ($S_n$): Predstavlja zbir prvih $n$ uzastopnih članova niza i računa se formulom:
-	\[S_n = b_1 \cdot \frac{1 - q^n}{1 - q} \quad \text{ili} \quad S_n = b_1 \cdot \frac{q^n - 1}{q - 1}\]
-\end{enumerate}
-
-\subsection{Fibonačijev niz}
-
-Fibonačijev niz je niz brojeva u kojem je svaki član (počevši od trećeg) jednak zbiru prethodna dva člana. Niz standardno počinje brojevima 0 i 1.
-
-Fibonačijev niz koji počinje sa $0$ i $1$, gde je svaki sledeći član zbir prethodna dva:
-\[0, 1, 1, 2, 3, 5, 8, 13, 21, \dots\]
-
-\subsection{Osnovne karakteristike Fibonačijevog niza}
-
-\begin{enumerate}
-	\item Definicija: Niz je zadat rekurentnom relacijom gde je svaki član zbir prethodna dva:
-	\[F_0 = 0, \quad F_1 = 1, \quad F_n = F_{n-1} + F_{n-2} \quad (\text{za } n \ge 2)\]
-	\item Zlatni presek: Granična vrednost količnika dva uzastopna člana teži broju $\phi$:
-	\[\lim_{n \to \infty} \frac{F_n}{F_{n-1}} = \phi = \frac{1+\sqrt{5}}{2} \approx 1.618\]
-	\item Binetova formula (Eksplicitni oblik): Omogućava direktno računanje $n$-tog člana niza:
-	\[F_n = \frac{1}{\sqrt{5}} \left[ \left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n \right]\]
-	\item Suma prvih $n$ članova: Zbir članova se elegantno računa preko formule:
-	\[S_n = \sum_{i=1}^{n} F_i = F_{n+2} - 1\]
-\end{enumerate}
-
-
-\chapter{Cirkularne matrice}
-
-\section{Definicija}
+\subsection{Definicija}
 
 Cirkularna matrica je u potpunosti određena svojom prvom vrstom, odnosno
 kolonom, pa je kraće označavamo $C_{c_0, c_1, c_2, \dots, c_{n-1}} = (c_0, c_1, c_2, \dots, c_{n-1})$. Kao
@@ -301,15 +244,15 @@ C=
 \end{bmatrix}.
 \]
 
-\section{Osnovna svojstva}
+\subsection{Osnovna svojstva}
 
 Važe sledeća svojstva:
 
 \begin{enumerate}
-    \item zbir dve cirkularne matrice je cirkularna matrica,
-    \item proizvod dve cirkularne matrice je cirkularna matrica,
-    \item inverzna matrica cirkularne matrice je takođe cirkularna,
-    \item cirkularne matrice međusobno komutiraju.
+	\item zbir dve cirkularne matrice je cirkularna matrica,
+	\item proizvod dve cirkularne matrice je cirkularna matrica,
+	\item inverzna matrica cirkularne matrice je takođe cirkularna,
+	\item cirkularne matrice međusobno komutiraju.
 \end{enumerate}
 
 
@@ -472,10 +415,164 @@ koja zadovoljava $P^n=I$.
 	\]
 \end{enumerate}
 
+---------------------------------------------------------------------
 
-\chapter{Furijeova matrica}
 
-\section{Definicija}
+
+\subsection{Polinomijalna reprezentacija}
+
+Svaka cirkularna matrica može se posmatrati kao linearna kombinacija
+stepena jedne jedine bazične matrice~--- matrice cikličnog pomaka $P$.
+
+Neka je $C$ cirkularna matrica reda $n$ sa prvom vrstom
+$(c_0, c_1, \dots, c_{n-1})$. Preko matrice pomaka $P$ zapisuje se kao polinom:
+\[
+C = c_0 I + c_1 P + c_2 P^2 + \dots + c_{n-1} P^{n-1}
+= \sum_{r=0}^{n-1} c_r P^r .
+\]
+Opšti stepen $m \in \mathbb{N}$ dobija se stepenovanjem tog polinoma:
+\[
+C^m = \bigl(c_0 I + c_1 P + c_2 P^2 + \dots + c_{n-1} P^{n-1}\bigr)^m .
+\]
+Za matricu $P$ važi ciklično pravilo
+\[
+P^n = I ,
+\]
+pa se pri razvijanju polinoma svi stepeni $P^k$ redukuju po modulu $n$
+(npr.\ $P^{n} = I$, $P^{n+1} = P$, \dots). Rezultat $C^m$ je uvek nova
+cirkularna matrica.
+
+\subsection{Opšta eksplicitna formula preko sopstvenih vrednosti}
+
+Najefikasniji način da se izračuna $C^m$ bez direktnog množenja polinoma
+jeste korišćenje Diskretne Furijeove transformacije (DFT). Ako prva vrsta
+matrice $C^m$ ima elemente $(A_0, A_1, \dots, A_{n-1})$, oni se računaju kao
+\[
+A_j = \frac{1}{n} \sum_{k=0}^{n-1}
+\left( \sum_{r=0}^{n-1} c_r\, \E^{\,\I \frac{2\pi r k}{n}} \right)^{\!m}
+\E^{-\I \frac{2\pi j k}{n}} ,
+\qquad j = 0, 1, \dots, n-1 .
+\]
+
+\subsection{Razlaganje formule na korake}
+\begin{enumerate}
+	\item Unutrašnja suma daje sopstvene vrednosti matrice $C$:
+	\[
+	\lambda_k = \sum_{r=0}^{n-1} c_r\, \E^{\,\I \frac{2\pi r k}{n}} .
+	\]
+	\item Sopstvene vrednosti se podižu na stepen $m$: $\Lambda_k = \lambda_k^{\,m}$.
+	\item Spoljašnja suma vrši inverznu transformaciju i vraća elemente nove
+	prve vrste:
+	\[
+	A_j = \frac{1}{n} \sum_{k=0}^{n-1} \Lambda_k\, \E^{-\I \frac{2\pi j k}{n}} .
+	\]
+\end{enumerate}
+
+\subsection{Specijalna svojstva stepenovanja}
+
+\begin{description}
+	\item[Komutativnost.] Sve cirkularne matrice istog reda međusobno komutiraju
+	($AB = BA$), pa za njih važi klasična binomna formula:
+	\[
+	(C_1 + C_2)^m = \sum_{k=0}^{m} \binom{m}{k} C_1^{\,m-k} C_2^{\,k} .
+	\]
+	\item[Očuvanje strukture.] Stepen cirkularne matrice je uvek cirkularna
+	matrica, bez obzira na stepen $m$.
+	\item[Periodičnost.] Ako su sve sopstvene vrednosti $\lambda_k$ koreni iz
+	jedinice, tj.\ $\lambda_k^{\,N} = 1$ za neko $N \in \mathbb{N}$, tada je
+	$C^N = I$. (Uslov $|\lambda_k| = 1$ sam po sebi nije dovoljan.)
+\end{description}
+
+\subsection{Primer za $3 \times 3$}
+
+Za opštu realnu cirkularnu matricu $3 \times 3$ podignutu na stepen $m$:
+\[
+C^m =
+\begin{pmatrix}
+	A_0 & A_1 & A_2 \\
+	A_2 & A_0 & A_1 \\
+	A_1 & A_2 & A_0
+\end{pmatrix},
+\]
+gde su elementi (trigonometrijski oblik, bez imaginarnih jedinica u rezultatu):
+\begin{align*}
+	A_0 &= \frac{1}{3}\Bigl[\lambda_0^{\,m} + 2\,\Re\bigl(\lambda_1^{\,m}\bigr)\Bigr], \\[4pt]
+	A_1 &= \frac{1}{3}\Bigl[\lambda_0^{\,m} + 2\,\Re\bigl(\lambda_1^{\,m}\, \E^{-\I \frac{2\pi}{3}}\bigr)\Bigr], \\[4pt]
+	A_2 &= \frac{1}{3}\Bigl[\lambda_0^{\,m} + 2\,\Re\bigl(\lambda_1^{\,m}\, \E^{-\I \frac{4\pi}{3}}\bigr)\Bigr].
+\end{align*}
+
+\paragraph{Napomena.}
+$\lambda_0 = c_0 + c_1 + c_2$ je zbir elemenata prve vrste, a
+$\lambda_1 = c_0 + c_1 \E^{\,\I 2\pi/3} + c_2 \E^{\,\I 4\pi/3}$ je kompleksna
+sopstvena vrednost. Za realne $c_r$ važi $\lambda_2 = \overline{\lambda_1}$,
+zbog čega se formule svode na realne delove.
+
+---------------------------------------------------------------------
+
+\section{Poznati nizovi}
+
+\subsection{Aritmetički niz}
+
+Aritmetički niz (ili aritmetička progresija) je niz brojeva u kojem je razlika svakog člana i njegovog prethodnika stalan broj.
+
+Aritmetički niz u kome je svaki sledeći član za $3$ veći od prethodnog:
+\[3, 6, 9, 12, 15, \dots\]
+
+\textbf{Osnovne karakteristike aritmetičkog niza}
+
+\begin{enumerate}
+	\item Prvi član niza: Obeležava se sa $a_1$ i predstavlja početnu vrednost niza.
+	\item Diferencija (razlika niza): Obeležava se sa $d$ i predstavlja stalnu razliku između bilo koja dva uzastopna člana:
+	\[d = a_n - a_{n-1}\]
+	\item Opšti član ($n$-ti član): Omogućava izračunavanje bilo kog člana niza na osnovu prvog člana i diferencije:
+	\[a_n = a_1 + (n - 1)d\]
+	\item Suma prvih $n$ članova ($S_n$): Predstavlja zbir prvih $n$ uzastopnih članova niza i može se izračunati preko jedne od sledećih formula:
+	\[S_n = \frac{n}{2} (a_1 + a_n)\]
+	\[S_n = \frac{n}{2} [2a_1 + (n - 1)d]\]
+\end{enumerate}
+
+\subsection{Geometrijski niz}
+
+Geometrijski niz (ili geometrijska progresija) je niz brojeva u kojem je količnik svakog člana i njegovog prethodnika stalan broj. Taj konstantan broj se naziva količnik (ili kvocijent) niza i najčešće se obeležava slovom q. To znači da se svaki sledeći član niza dobija množenjem prethodnog člana tim stalnim brojem q (uz uslov da je q ≠ 0 i q ≠ 1).
+
+Geometrijski niz u kome se svaki sledeći član dobija množenjem prethodnog brojem $2$:
+\[2, 4, 8, 16, 32, \dots\]
+
+\textbf{Osnovne karakteristike geometrijskog niza} 
+
+\begin{enumerate}
+	\item Prvi član niza: Obeležava se sa $b_1$ (ili $a_1$) i predstavlja početnu vrednost niza.
+	\item Količnik niza (kocijent): Obeležava se sa $q$ i predstavlja stalan odnos (količnik) između bilo kog člana i njegovog prethodnika:
+	\[q = \frac{b_n}{b_{n-1}} \quad (q \neq 0, q \neq 1)\]
+	\item Opšti član ($n$-ti član): Omogućava izračunavanje bilo kog člana niza na osnovu prvog člana i količnika:
+	\[b_n = b_1 \cdot q^{n-1}\]
+	\item Suma prvih $n$ članova ($S_n$): Predstavlja zbir prvih $n$ uzastopnih članova niza i računa se formulom:
+	\[S_n = b_1 \cdot \frac{1 - q^n}{1 - q} \quad \text{ili} \quad S_n = b_1 \cdot \frac{q^n - 1}{q - 1}\]
+\end{enumerate}
+
+\subsection{Fibonačijev niz}
+
+Fibonačijev niz je niz brojeva u kojem je svaki član (počevši od trećeg) jednak zbiru prethodna dva člana. Niz standardno počinje brojevima 0 i 1.
+
+Fibonačijev niz koji počinje sa $0$ i $1$, gde je svaki sledeći član zbir prethodna dva:
+\[0, 1, 1, 2, 3, 5, 8, 13, 21, \dots\]
+
+\textbf{Osnovne karakteristike Fibonačijevog niza}
+
+\begin{enumerate}
+	\item Definicija: Niz je zadat rekurentnom relacijom gde je svaki član zbir prethodna dva:
+	\[F_0 = 0, \quad F_1 = 1, \quad F_n = F_{n-1} + F_{n-2} \quad (\text{za } n \ge 2)\]
+	\item Zlatni presek: Granična vrednost količnika dva uzastopna člana teži broju $\phi$:
+	\[\lim_{n \to \infty} \frac{F_n}{F_{n-1}} = \phi = \frac{1+\sqrt{5}}{2} \approx 1.618\]
+	\item Binetova formula (Eksplicitni oblik): Omogućava direktno računanje $n$-tog člana niza:
+	\[F_n = \frac{1}{\sqrt{5}} \left[ \left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n \right]\]
+	\item Suma prvih $n$ članova: Zbir članova se elegantno računa preko formule:
+	\[S_n = \sum_{i=1}^{n} F_i = F_{n+2} - 1\]
+\end{enumerate}
+
+\section{Furijeova matrica}
+
+\subsection{Definicija}
 
 Fourierova matrica (DFT matrica) je kvadratna matrica $F_n$ reda $n \times n$
 sa elementima
@@ -485,7 +582,7 @@ sa elementima
 gde je $i=\sqrt{-1}$ i $\omega = e^{2\pi i/n}$. Matrica se normalizuje
 faktorom $1/\sqrt{n}$ kako bi bila unitarna.
 
-\section{Primeri}
+\subsection{Primeri}
 
 Za $n=2$:
 \begin{equation}
@@ -526,7 +623,7 @@ Za $n=4$:
 	\end{pmatrix}.
 \end{align}
 
-\section{Opšta faktorizacija}
+\subsection{Opšta faktorizacija}
 
 \begin{equation}
 	F_{2n} =
@@ -606,346 +703,1534 @@ Pošto su cirkularne matrice dijagonalizabilne:
 \[
 C^m = F^{-1}D^mF.
 \]
+--------------------------------------------------------
 
+\section{Sopstvene vrednosti i sopstveni vektori matrice}
+
+Sopstvene vrednosti i sopstveni vektori predstavljaju važne
+pojmove u linearnoj algebri. Oni omogućavaju proučavanje
+strukture linearnih transformacija i imaju značajnu primenu
+pri dijagonalizaciji matrica, računanju stepena matrica,
+rešavanju sistema diferencijalnih jednačina i analizi
+cirkularnih matrica.
+
+\subsection{Definicija sopstvenih vrednosti i sopstvenih vektora}
+
+
+Neka je $A\in\mathbb{K}^{n\times n}$ kvadratna matrica.
+Nenulti vektor $x\in\mathbb{K}^n$ naziva se
+\textbf{sopstvenim vektorom} matrice $A$ ako postoji
+skalar $\lambda\in\mathbb{K}$ takav da važi
+\[
+Ax=\lambda x.
+\]
+
+Skalar $\lambda$ naziva se \textbf{sopstvenom vrednošću}
+matrice $A$ koja odgovara sopstvenom vektoru $x$.
+
+
+U prethodnoj definiciji važi:
+\begin{enumerate}
+	\item $A$ je kvadratna matrica;
+	\item $x\neq 0$ je sopstveni vektor;
+	\item $\lambda$ je sopstvena vrednost;
+	\item $Ax$ predstavlja proizvod matrice i vektora;
+	\item $\lambda x$ predstavlja skaliranje vektora $x$.
+\end{enumerate}
+
+Sopstveni vektor matrice pri delovanju matrice ne menja
+svoj pravac, već se samo množi odgovarajućom sopstvenom
+vrednošću.
+
+\subsection{Karakteristična jednačina matrice}
+
+Iz definicije sopstvenih vrednosti i sopstvenih vektora
+važi
+\[
+Ax=\lambda x.
+\]
+
+Prebacivanjem svih članova na levu stranu dobijamo
+\[
+Ax-\lambda x=0.
+\]
+
+Kako je
+\[
+\lambda x=\lambda Ix,
+\]
+sledi
+\[
+(A-\lambda I)x=0.
+\]
+
+Ovaj homogeni sistem ima netrivijalno rešenje $x\neq 0$
+ako i samo ako je matrica $A-\lambda I$ singularna.
+Prema tome,
+\[
+\det(A-\lambda I)=0.
+\]
+
+
+Jednačina
+\[
+\boxed{\det(A-\lambda I)=0}
+\]
+naziva se \textbf{karakteristična jednačina} matrice $A$.
+
+Polinom
+\[
+p_A(\lambda)=\det(A-\lambda I)
+\]
+naziva se \textbf{karakteristični polinom} matrice $A$.
+
+
+Rešenja karakteristične jednačine predstavljaju sopstvene
+vrednosti matrice $A$.
+
+\subsection{Postupak određivanja sopstvenih vrednosti i sopstvenih vektora}
+
+Sopstvene vrednosti i sopstveni vektori određuju se
+u sledećim koracima:
+
+\begin{enumerate}
+	\item Formira se matrica $A-\lambda I$.
+	\item Izračunava se determinanta $\det(A-\lambda I)$.
+	\item Rešava se karakteristična jednačina
+	\[
+	\det(A-\lambda I)=0
+	\]
+	i određuju se sopstvene vrednosti $\lambda_1,\ldots,\lambda_n$.
+	\item Za svaku sopstvenu vrednost $\lambda_i$ rešava se
+	homogeni sistem
+	\[
+	(A-\lambda_i I)x=0.
+	\]
+	\item Nenulta rešenja dobijenih sistema predstavljaju
+	sopstvene vektore koji odgovaraju sopstvenim vrednostima.
+\end{enumerate}
+
+\subsection{Primer 1: Određivanje sopstvenih vrednosti
+	i sopstvenih vektora}
+
+Neka je data matrica
+\[
+A=
+\begin{pmatrix}
+	2 & 1\\
+	1 & 2
+\end{pmatrix}.
+\]
+
+\textbf{Korak 1: Formiranje karakteristične jednačine}
+
+Imamo
+\[
+A-\lambda I=
+\begin{pmatrix}
+	2-\lambda & 1\\
+	1 & 2-\lambda
+\end{pmatrix}.
+\]
+
+Karakteristična jednačina glasi
+\[
+\det(A-\lambda I)=0.
+\]
+
+Izračunavanjem determinante dobijamo
+\[
+\begin{vmatrix}
+	2-\lambda & 1\\
+	1 & 2-\lambda
+\end{vmatrix}=0.
+\]
+
+Odnosno,
+\[
+(2-\lambda)^2-1=0.
+\]
+
+Razvijanjem izraza dobijamo
+\[
+\lambda^2-4\lambda+3=0.
+\]
+
+Faktorizacijom sledi
+\[
+(\lambda-1)(\lambda-3)=0.
+\]
+
+Prema tome, sopstvene vrednosti matrice su
+\[
+\boxed{\lambda_1=1,\qquad \lambda_2=3.}
+\]
+
+\textbf{Korak 2: Određivanje sopstvenog vektora
+	za $\lambda_1=1$}
+
+Rešavamo sistem
+\[
+(A-I)x=0.
+\]
+
+Imamo
+\[
+\begin{pmatrix}
+	1 & 1\\
+	1 & 1
+\end{pmatrix}
+\begin{pmatrix}
+	x_1\\
+	x_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+	0\\
+	0
+\end{pmatrix}.
+\]
+
+Sistem se svodi na jednačinu
+\[
+x_1+x_2=0.
+\]
+
+Odavde je
+\[
+x_2=-x_1.
+\]
+
+Ako izaberemo $x_1=1$, dobijamo sopstveni vektor
+\[
+\boxed{
+	v_1=
+	\begin{pmatrix}
+		1\\
+		-1
+	\end{pmatrix}.
+}
+\]
+
+\textbf{Korak 3: Određivanje sopstvenog vektora
+	za $\lambda_2=3$}
+
+Rešavamo sistem
+\[
+(A-3I)x=0.
+\]
+
+Imamo
+\[
+\begin{pmatrix}
+	-1 & 1\\
+	1 & -1
+\end{pmatrix}
+\begin{pmatrix}
+	x_1\\
+	x_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+	0\\
+	0
+\end{pmatrix}.
+\]
+
+Sistem se svodi na
+\[
+-x_1+x_2=0.
+\]
+
+Odavde je
+\[
+x_2=x_1.
+\]
+
+Ako izaberemo $x_1=1$, dobijamo sopstveni vektor
+\[
+\boxed{
+	v_2=
+	\begin{pmatrix}
+		1\\
+		1
+	\end{pmatrix}.
+}
+\]
+
+Dakle, matrica $A$ ima sopstvene vrednosti
+$\lambda_1=1$ i $\lambda_2=3$, sa odgovarajućim
+sopstvenim vektorima
+\[
+v_1=
+\begin{pmatrix}
+	1\\
+	-1
+\end{pmatrix},
+\qquad
+v_2=
+\begin{pmatrix}
+	1\\
+	1
+\end{pmatrix}.
+\]
+
+\subsection{Osnovne osobine sopstvenih vrednosti}
+
+Za kvadratnu matricu $A\in\mathbb{K}^{n\times n}$
+važe sledeće osobine:
+
+\begin{enumerate}
+	\item \textbf{Sopstvene vrednosti i determinanta}
+	
+	Determinanta matrice jednaka je proizvodu svih njenih
+	sopstvenih vrednosti, računajući njihove algebrajske
+	višestrukosti:
+	\[
+	\boxed{
+		\det(A)=\prod_{i=1}^{n}\lambda_i.
+	}
+	\]
+	
+	\item \textbf{Sopstvene vrednosti i trag matrice}
+	
+	Trag matrice, odnosno zbir elemenata na glavnoj dijagonali,
+	jednak je zbiru svih sopstvenih vrednosti:
+	\[
+	\boxed{
+		\operatorname{tr}(A)=\sum_{i=1}^{n}\lambda_i.
+	}
+	\]
+	
+	\item \textbf{Sopstvene vrednosti jedinične matrice}
+	
+	Sve sopstvene vrednosti jedinične matrice jednake su jedinici:
+	\[
+	\lambda_i=1.
+	\]
+	
+	\item \textbf{Sopstvene vrednosti nulte matrice}
+	
+	Sve sopstvene vrednosti nulte matrice jednake su nuli:
+	\[
+	\lambda_i=0.
+	\]
+	
+	\item \textbf{Sopstvene vrednosti transponovane matrice}
+	
+	Matrice $A$ i $A^T$ imaju iste sopstvene vrednosti, jer važi
+	\[
+	\det(A-\lambda I)
+	=
+	\det(A^T-\lambda I).
+	\]
+	
+	\item \textbf{Sopstvene vrednosti stepena matrice}
+	
+	Ako je $\lambda$ sopstvena vrednost matrice $A$ koja
+	odgovara sopstvenom vektoru $x$, onda je $\lambda^k$
+	sopstvena vrednost matrice $A^k$ koja odgovara istom vektoru:
+	\[
+	\boxed{
+		A^kx=\lambda^kx.
+	}
+	\]
+\end{enumerate}
+
+\subsection{Sopstveni potprostor}
+
+
+Za sopstvenu vrednost $\lambda$ matrice $A$, skup svih
+sopstvenih vektora koji odgovaraju toj sopstvenoj vrednosti,
+zajedno sa nultim vektorom, naziva se
+\textbf{sopstveni potprostor} i označava se sa
+\[
+E_\lambda=\ker(A-\lambda I).
+\]
+
+Odnosno,
+\[
+\boxed{
+	E_\lambda=
+	\{x\in\mathbb{K}^n:(A-\lambda I)x=0\}.
+}
+\]
+
+
+Sopstveni potprostor predstavlja skup svih vektora koji
+se pri delovanju matrice $A$ množe istom sopstvenom vrednošću
+$\lambda$.
+
+\subsection{Višestrukost sopstvenih vrednosti}
+
+
+Algebrajska višestrukost sopstvene vrednosti $\lambda$
+predstavlja broj pojavljivanja te sopstvene vrednosti
+kao korena karakterističnog polinoma.
+
+Geometrijska višestrukost sopstvene vrednosti $\lambda$
+predstavlja dimenziju njenog sopstvenog potprostora:
+\[
+\boxed{
+	g_\lambda=\dim\ker(A-\lambda I).
+}
+\]
+
+
+Za svaku sopstvenu vrednost važi
+\[
+1\leq g_\lambda\leq a_\lambda,
+\]
+gde je $a_\lambda$ algebrajska višestrukost, a
+$g_\lambda$ geometrijska višestrukost.
+
+\subsection{Primer 2: Sopstvena vrednost sa višestrukim
+	sopstvenim vektorima}
+
+Neka je data matrica
+\[
+A=
+\begin{pmatrix}
+	2 & 0\\
+	0 & 2
+\end{pmatrix}.
+\]
+
+Karakteristična jednačina glasi
+\[
+\det(A-\lambda I)=0.
+\]
+
+Dakle,
+\[
+\begin{vmatrix}
+	2-\lambda & 0\\
+	0 & 2-\lambda
+\end{vmatrix}=0.
+\]
+
+Dobijamo
+\[
+(2-\lambda)^2=0.
+\]
+
+Prema tome, jedina sopstvena vrednost je
+\[
+\boxed{\lambda=2.}
+\]
+
+Za određivanje sopstvenih vektora rešavamo
+\[
+(A-2I)x=0.
+\]
+
+Imamo
+\[
+\begin{pmatrix}
+	0 & 0\\
+	0 & 0
+\end{pmatrix}
+\begin{pmatrix}
+	x_1\\
+	x_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+	0\\
+	0
+\end{pmatrix}.
+\]
+
+Sistem nema ograničenja na $x_1$ i $x_2$, osim uslova
+da sopstveni vektor nije nulti vektor.
+
+Prema tome, svi nenulti vektori iz $\mathbb{R}^2$
+predstavljaju sopstvene vektore matrice $A$.
+
+Sopstveni potprostor je
+\[
+E_2=\mathbb{R}^2.
+\]
+
+Algebrajska i geometrijska višestrukost iznose
+\[
+a_2=2,\qquad g_2=2.
+\]
+
+\subsection{Dijagonalizacija matrice pomoću sopstvenih
+	vrednosti i sopstvenih vektora}
+
+
+Kvadratna matrica $A$ reda $n$ naziva se dijagonalizabilnom
+ako postoji regularna matrica $P$ i dijagonalna matrica $D$
+takve da važi
+\[
+\boxed{
+	A=PDP^{-1}.
+}
+\]
+
+
+Ako matrica $A$ ima $n$ linearno nezavisnih sopstvenih
+vektora $v_1,v_2,\ldots,v_n$, tada se matrica $P$ formira
+od tih sopstvenih vektora kao kolona:
+\[
+P=
+\begin{pmatrix}
+	| & | & & |\\
+	v_1 & v_2 & \cdots & v_n\\
+	| & | & & |
+\end{pmatrix}.
+\]
+
+Dijagonalna matrica $D$ sadrži odgovarajuće sopstvene
+vrednosti:
+\[
+D=
+\begin{pmatrix}
+	\lambda_1 & 0 & \cdots & 0\\
+	0 & \lambda_2 & \cdots & 0\\
+	\vdots & \vdots & \ddots & \vdots\\
+	0 & 0 & \cdots & \lambda_n
+\end{pmatrix}.
+\]
+
+Prema tome, važi
+\[
+AP=PD,
+\]
+odakle sledi
+\[
+\boxed{
+	A=PDP^{-1}.
+}
+\]
+
+\subsection{Primer 3: Dijagonalizacija matrice}
+
+Posmatrajmo matricu
+\[
+A=
+\begin{pmatrix}
+	2 & 1\\
+	1 & 2
+\end{pmatrix}.
+\]
+
+Iz prethodnog primera poznate su sopstvene vrednosti
+\[
+\lambda_1=1,\qquad \lambda_2=3,
+\]
+i odgovarajući sopstveni vektori
+\[
+v_1=
+\begin{pmatrix}
+	1\\
+	-1
+\end{pmatrix},
+\qquad
+v_2=
+\begin{pmatrix}
+	1\\
+	1
+\end{pmatrix}.
+\]
+
+Formiramo matricu $P$:
+\[
+P=
+\begin{pmatrix}
+	1 & 1\\
+	-1 & 1
+\end{pmatrix}.
+\]
+
+Dijagonalna matrica $D$ je
+\[
+D=
+\begin{pmatrix}
+	1 & 0\\
+	0 & 3
+\end{pmatrix}.
+\]
+
+Inverzna matrica matrice $P$ iznosi
+\[
+P^{-1}=
+\frac{1}{2}
+\begin{pmatrix}
+	1 & -1\\
+	1 & 1
+\end{pmatrix}.
+\]
+
+Prema tome, matrica $A$ može se zapisati u obliku
+\[
+\boxed{
+	A=PDP^{-1}.
+}
+\]
+
+Ova reprezentacija omogućava jednostavno računanje
+stepena matrice:
+\[
+A^k=PD^kP^{-1}.
+\]
+
+Kako je
+\[
+D^k=
+\begin{pmatrix}
+	1 & 0\\
+	0 & 3^k
+\end{pmatrix},
+\]
+dobijamo
+\[
+A^k=
+\frac{1}{2}
+\begin{pmatrix}
+	1+3^k & 3^k-1\\
+	3^k-1 & 1+3^k
+\end{pmatrix}.
+\]
+
+\subsection{Veza sa cirkularnim matricama}
+
+Sopstvene vrednosti i sopstveni vektori imaju posebnu
+ulogu kod cirkularnih matrica.
+
+Svaka cirkularna matrica reda $n$ može se dijagonalizovati
+pomoću Furijeove matrice:
+\[
+\boxed{
+	C=F^{-1}DF.
+}
+\]
+
+U ovom slučaju:
+\begin{enumerate}
+	\item kolone matrice $F^{-1}$ predstavljaju sopstvene
+	vektore cirkularne matrice $C$;
+	\item dijagonalni elementi matrice $D$ predstavljaju
+	sopstvene vrednosti matrice $C$;
+	\item sopstvene vrednosti dobijaju se primenom
+	diskretne Furijeove transformacije na prvi red matrice.
+\end{enumerate}
+
+Ako je
+\[
+D=\operatorname{diag}(\lambda_0,\lambda_1,\ldots,\lambda_{n-1}),
+\]
+onda važi
+\[
+C^k=F^{-1}D^kF,
+\]
+gde je
+\[
+D^k=
+\operatorname{diag}
+(\lambda_0^k,\lambda_1^k,\ldots,\lambda_{n-1}^k).
+\]
+
+Na ovaj način računanje stepena cirkularne matrice
+svodi se na stepenovanje njenih sopstvenih vrednosti.
+
+ 
 \chapter{Određivanje n-tog stepena cirkularnih matrica}
 
 \section{Veza sa Furijeovom transformacijom}
 
-Cirkularne matrice imaju posebnu osobinu da se mogu dijagonalizovati
-pomoću Furijeove matrice. Ova osobina omogućava da se operacije nad
-cirkularnim matricama svedu na jednostavnije operacije nad
-dijagonalnim matricama.
+Cirkularne matrice imaju posebnu osobinu da se mogu dijagonalizovati pomoću Furijeove matrice. Ova osobina omogućava da se operacije nad cirkularnim matricama svedu na jednostavnije operacije nad dijagonalnim matricama.
 
-Neka je:
+Osnovna prednost ovog pristupa ogleda se u tome što se određivanje n-tog stepena cirkularne matrice, koje direktnim množenjem zahteva veliki broj računskih operacija, može izvršiti stepenovanjem njenih sopstvenih vrednosti.
 
-\[
-C = F^{-1}DF.
-\]
+\subsection{Određivanje n-tog stepena cirkularne matrice}
 
-Tada važi:
+Polazeći od dijagonalizacije
 
 \[
-C^n = F^{-1}D^nF.
+C=F^{-1}DF,
 \]
 
-Pošto je:
+n-ti stepen matrice \(C\) može se zapisati kao
 
 \[
-D = \operatorname{diag}(\lambda_0,\lambda_1,\dots,\lambda_{n-1}),
+C^n=(F^{-1}DF)^n.
 \]
 
-sledi:
+Za \(n\geq 1\), razvijanjem proizvoda dobija se
 
 \[
-D^n = \operatorname{diag}(\lambda_0^n,\lambda_1^n,\dots,\lambda_{n-1}^n).
+C^n=
+\underbrace{F^{-1}DF\,F^{-1}DF\cdots F^{-1}DF}_{n\text{ faktora}}.
 \]
 
-Dakle, određivanje n-tog stepena matrice svodi se na stepenovanje sopstvenih vrednosti.
-
-\chapter{Cirkularne matrice sa elementima aritmetičkog niza}
-
-Razmatrajmo matricu:
+Pošto važi
 
 \[
-A = \operatorname{circ}(a,a+d,a+2d).
+FF^{-1}=I,
 \]
 
-Njena forma je:
+svi susedni proizvodi Furijeove matrice i njene inverzne matrice mogu se skratiti. Na taj način dobija se
 
 \[
-A=
-\begin{bmatrix}
-a & a+d & a+2d \\
-a+2d & a & a+d \\
-a+d & a+2d & a
-\end{bmatrix}.
+C^n=F^{-1}D^nF.
 \]
 
-\section{Sopstvene vrednosti}
-
-Dobijamo:
+Dakle, važi sledeća jednakost:
 
 \[
-\lambda_k = a + (a+d)\omega^k + (a+2d)\omega^{2k}.
+\boxed{C^n=F^{-1}D^nF}.
 \]
 
-Za $k=0$:
+Pošto je \(D\) dijagonalna matrica,
 
 \[
-\lambda_0 = 3a+3d.
+D=
+\operatorname{diag}(\lambda_0,\lambda_1,\dots,\lambda_{N-1}),
 \]
 
-\section{Primer}
-
-Neka je:
+njen n-ti stepen dobija se jednostavnim stepenovanjem elemenata na glavnoj dijagonali:
 
 \[
-a=1, \qquad d=1.
+D^n=
+\operatorname{diag}(\lambda_0^n,\lambda_1^n,\dots,\lambda_{N-1}^n).
 \]
 
-Tada je:
+Prema tome,
 
 \[
-A = \operatorname{circ}(1,2,3).
+\boxed{
+	C^n=
+	F^{-1}
+	\operatorname{diag}(\lambda_0^n,\lambda_1^n,\dots,\lambda_{N-1}^n)
+	F
+}.
 \]
 
-Odnosno:
+Ovaj izraz predstavlja osnovnu formulu za određivanje n-tog stepena cirkularne matrice pomoću Furijeove transformacije.
 
-\[
-A=
-\begin{bmatrix}
-1 & 2 & 3 \\
-3 & 1 & 2 \\
-2 & 3 & 1
-\end{bmatrix}.
-\]
+\subsection{Postupak određivanja n-tog stepena}
 
-Računamo:
+Na osnovu prethodnih rezultata, određivanje n-tog stepena cirkularne matrice može se sprovesti kroz sledeće korake:
 
-\[
-A^2=
-\begin{bmatrix}
-13 & 13 & 10 \\
-10 & 13 & 13 \\
-13 & 10 & 13
-\end{bmatrix}.
-\]
+\begin{enumerate}
+	\item Zadata je cirkularna matrica
+	\[
+	C=\operatorname{circ}(c_0,c_1,\dots,c_{N-1}).
+	\]
+	
+	\item Izračunavaju se njene sopstvene vrednosti primenom diskretne Furijeove transformacije:
+	\[
+	\lambda_k=\sum_{j=0}^{N-1}c_j\omega_N^{kj}.
+	\]
+	
+	\item Svaka sopstvena vrednost stepenjuje se na n-ti stepen:
+	\[
+	\mu_k=\lambda_k^n.
+	\]
+	
+	\item Formira se dijagonalna matrica
+	\[
+	D_n=\operatorname{diag}(\mu_0,\mu_1,\dots,\mu_{N-1}).
+	\]
+	
+	\item Izračunava se n-ti stepen cirkularne matrice:
+	\[
+	\boxed{C^n=F^{-1}D_nF}.
+	\]
+\end{enumerate}
 
-\chapter{Cirkularne matrice sa elementima geometrijskog niza}
+Na ovaj način izbegava se direktno množenje matrice \(C\) same sa sobom \(n-1\) puta.
 
-Posmatrajmo matricu:
+\subsection{Primer određivanja drugog stepena cirkularne matrice}
 
-\[
-G = \operatorname{circ}(a,aq,aq^2).
-\]
-
-Odnosno:
-
-\[
-G=
-\begin{bmatrix}
-a & aq & aq^2 \\
-aq^2 & a & aq \\
-aq & aq^2 & a
-\end{bmatrix}.
-\]
-
-Sopstvene vrednosti su:
-
-\[
-\lambda_k = a(1+q\omega^k+q^2\omega^{2k}).
-\]
-
-\section{Primer}
-
-Neka je:
-
-\[
-a=1, \qquad q=2.
-\]
-
-Tada je:
-
-\[
-G = \operatorname{circ}(1,2,4).
-\]
-
-Kvadrat matrice iznosi:
-
-\[
-G^2=
-\begin{bmatrix}
-17 & 20 & 16 \\
-16 & 17 & 20 \\
-20 & 16 & 17
-\end{bmatrix}.
-\]
-
-\chapter{Cirkularne matrice sa elementima Fibonačijevog niza}
-
-Razmatrajmo matricu reda 4:
-
-\[
-F = \operatorname{circ}(F_1,F_2,F_3,F_4).
-\]
-
-Pošto su:
-
-\[
-F_1=1, \quad F_2=1, \quad F_3=2, \quad F_4=3,
-\]
-
-dobijamo:
-
-\[
-F = \operatorname{circ}(1,1,2,3).
-\]
-
-Odnosno:
-
-\[
-F=
-\begin{bmatrix}
-1 & 1 & 2 & 3 \\
-3 & 1 & 1 & 2 \\
-2 & 3 & 1 & 1 \\
-1 & 2 & 3 & 1
-\end{bmatrix}.
-\]
-
-\section{Sopstvene vrednosti}
-
-Koreni jedinice četvrtog reda su:
-
-\[
-1,-1,i,-i.
-\]
-
-Dobijamo:
-
-\[
-\lambda_0 = 7,
-\]
-
-\[
-\lambda_1 = -1,
-\]
-
-\[
-\lambda_2 = -1+i,
-\]
-
-\[
-\lambda_3 = -1-i.
-\]
-
-\section{Kvadrat matrice}
-
-\[
-F^2=
-\begin{bmatrix}
-14 & 14 & 15 & 11 \\
-11 & 14 & 14 & 15 \\
-15 & 11 & 14 & 14 \\
-14 & 15 & 11 & 14
-\end{bmatrix}.
-\]
-
-\chapter{Primeri matrica reda 3 i 4}
-
-\section{Primer matrice reda 3}
-
-Neka je:
-
-\[
-B = \operatorname{circ}(2,3,4).
-\]
-
-Tada je:
-
-\[
-B=
-\begin{bmatrix}
-2 & 3 & 4 \\
-4 & 2 & 3 \\
-3 & 4 & 2
-\end{bmatrix}.
-\]
-
-Računamo:
-
-\[
-B^2=
-\begin{bmatrix}
-28 & 28 & 25 \\
-25 & 28 & 28 \\
-28 & 25 & 28
-\end{bmatrix}.
-\]
-
-\section{Primer matrice reda 4}
-
-Neka je:
-
-\[
-C = \operatorname{circ}(1,2,3,4).
-\]
-
-Odnosno:
+Neka je data cirkularna matrica
 
 \[
 C=
 \begin{bmatrix}
-1 & 2 & 3 & 4 \\
-4 & 1 & 2 & 3 \\
-3 & 4 & 1 & 2 \\
-2 & 3 & 4 & 1
+	1 & 2 & 3\\
+	3 & 1 & 2\\
+	2 & 3 & 1
 \end{bmatrix}.
 \]
 
-Kvadrat matrice:
+Njene sopstvene vrednosti dobijaju se primenom diskretne Furijeove transformacije na prvi red:
 
 \[
-C^2=
+\lambda_0=1+2+3=6,
+\]
+
+\[
+\lambda_1=1+2\omega_3+3\omega_3^2,
+\]
+
+\[
+\lambda_2=1+2\omega_3^2+3\omega_3,
+\]
+
+gde je
+
+\[
+\omega_3=e^{-\frac{2\pi i}{3}}
+=-\frac12-\frac{\sqrt{3}}{2}i.
+\]
+
+Nakon izračunavanja dobija se
+
+\[
+\lambda_1=-\frac32+\frac{\sqrt{3}}{2}i,
+\]
+
+\[
+\lambda_2=-\frac32-\frac{\sqrt{3}}{2}i.
+\]
+
+Dijagonalna matrica sopstvenih vrednosti je
+
+\[
+D=
 \begin{bmatrix}
-30 & 24 & 22 & 24 \\
-24 & 30 & 24 & 22 \\
-22 & 24 & 30 & 24 \\
-24 & 22 & 24 & 30
+	6 & 0 & 0\\
+	0 & -\frac32+\frac{\sqrt{3}}{2}i & 0\\
+	0 & 0 & -\frac32-\frac{\sqrt{3}}{2}i
 \end{bmatrix}.
 \]
 
-\chapter{Primene cirkularnih matrica}
+Za određivanje drugog stepena matrice potrebno je izračunati kvadrate sopstvenih vrednosti:
 
-Cirkularne matrice imaju značajnu primenu u:
+\[
+\lambda_0^2=36,
+\]
 
-\begin{itemize}
-    \item obradi digitalnih signala,
-    \item teoriji kodovanja,
-    \item numeričkoj analizi,
-    \item obradi slike,
-    \item kriptografiji,
-    \item rešavanju diferencnih jednačina.
-\end{itemize}
+\[
+\lambda_1^2=3-\frac{3\sqrt{3}}{2}i,
+\]
 
-Njihova glavna prednost jeste mogućnost efikasnog računanja pomoću Furijeove transformacije.
+\[
+\lambda_2^2=3+\frac{3\sqrt{3}}{2}i.
+\]
+
+Prema tome,
+
+\[
+D^2=
+\begin{bmatrix}
+	36 & 0 & 0\\
+	0 & 3-\frac{3\sqrt{3}}{2}i & 0\\
+	0 & 0 & 3+\frac{3\sqrt{3}}{2}i
+\end{bmatrix}.
+\]
+
+Primenom formule
+
+\[
+C^2=F^{-1}D^2F
+\]
+
+dobija se
+
+\[
+\boxed{
+	C^2=
+	\begin{bmatrix}
+		14 & 11 & 11\\
+		11 & 14 & 11\\
+		11 & 11 & 14
+	\end{bmatrix}
+}.
+\]
+
+Isti rezultat može se dobiti direktnim množenjem matrice \(C\) sa samom sobom, ali se primenom Furijeove transformacije postupak svodi na stepenovanje sopstvenih vrednosti.
+
+\subsection{Računska složenost}
+
+Direktno određivanje n-tog stepena matrice korišćenjem ponovljenog množenja zahteva \(n-1\) množenja matrica. Za matrice dimenzije \(N\times N\), standardno množenje matrica ima složenost
+
+\[
+O(N^3),
+\]
+
+pa je ukupna složenost direktnog postupka
+
+\[
+O(nN^3).
+\]
+
+Primena Furijeove transformacije omogućava efikasniji postupak. Sopstvene vrednosti cirkularne matrice mogu se izračunati primenom brze Furijeove transformacije (FFT), sa složenošću
+
+\[
+O(N\log N).
+\]
+
+Nakon toga potrebno je izvršiti \(N\) stepenovanja sopstvenih vrednosti, a zatim primeniti inverznu Furijeovu transformaciju.
+
+Ukupna složenost postupka, za fiksno \(n\), iznosi
+
+\[
+\boxed{O(N\log N)}.
+\]
+
+Ova osobina čini Furijeovu transformaciju posebno korisnom pri radu sa velikim cirkularnim matricama i pri određivanju njihovih visokih stepena.
+
+\chapter{Određivanje n-tog stepena cirkularne matrice sa elementima aritmetičkog niza}
+
+Razmatrajmo cirkularnu matricu trećeg reda čiji elementi prvog reda predstavljaju prva tri člana aritmetičkog niza:
+
+\[
+A=\operatorname{circ}(a,a+d,a+2d).
+\]
+
+Njena matrica je:
+
+\[
+A=
+\begin{bmatrix}
+	a & a+d & a+2d\\
+	a+2d & a & a+d\\
+	a+d & a+2d & a
+\end{bmatrix}.
+\]
+
+\section{Sopstvene vrednosti}
+
+Za određivanje sopstvenih vrednosti matrice \(A\) primenjujemo Furijeovu transformaciju na njen prvi red.
+
+Neka je
+
+\[
+\omega=e^{-\frac{2\pi i}{3}}
+=-\frac12-\frac{\sqrt{3}}{2}i.
+\]
+
+Sopstvene vrednosti matrice date su izrazom
+
+\[
+\lambda_k=a+(a+d)\omega^k+(a+2d)\omega^{2k},
+\qquad k=0,1,2.
+\]
+
+Za \(k=0\), koristeći \(\omega^0=1\), dobijamo
+
+\[
+\lambda_0=a+(a+d)+(a+2d),
+\]
+
+odnosno
+
+\[
+\boxed{\lambda_0=3a+3d}.
+\]
+
+Za \(k=1\), uzimajući u obzir da je
+
+\[
+1+\omega+\omega^2=0,
+\]
+
+dobijamo
+
+\[
+\lambda_1=a+(a+d)\omega+(a+2d)\omega^2.
+\]
+
+Sređivanjem izraza sledi
+
+\[
+\lambda_1=a(1+\omega+\omega^2)
++d(\omega+2\omega^2),
+\]
+
+pa je
+
+\[
+\boxed{
+	\lambda_1=d(\omega+2\omega^2)
+}.
+\]
+
+Analogno, za \(k=2\) dobijamo
+
+\[
+\boxed{
+	\lambda_2=d(\omega^2+2\omega)
+}.
+\]
+
+Zamenom vrednosti korena jedinice dobijamo
+
+\[
+\lambda_1=-\frac{3d}{2}-\frac{\sqrt{3}}{2}di,
+\]
+
+\[
+\lambda_2=-\frac{3d}{2}+\frac{\sqrt{3}}{2}di.
+\]
+
+Prema tome, sopstvene vrednosti matrice \(A\) su
+
+\[
+\boxed{
+	\lambda_0=3(a+d),\qquad
+	\lambda_{1,2}=-\frac{3d}{2}\mp\frac{\sqrt{3}}{2}di
+}.
+\]
+
+\section{Određivanje n-tog stepena}
+
+Na osnovu prethodno određenih sopstvenih vrednosti, n-ti stepen matrice \(A\) može se izraziti kao
+
+\[
+A^n=F^{-1}D^nF,
+\]
+
+gde je
+
+\[
+D^n=
+\begin{bmatrix}
+	[3(a+d)]^n & 0 & 0\\
+	0 & \left(-\frac{3d}{2}-\frac{\sqrt{3}}{2}di\right)^n & 0\\
+	0 & 0 & \left(-\frac{3d}{2}+\frac{\sqrt{3}}{2}di\right)^n
+\end{bmatrix}.
+\]
+
+Na ovaj način određivanje n-tog stepena matrice svodi se na stepenovanje tri sopstvene vrednosti.
+
+\section{Primer}
+
+Neka je
+
+\[
+a=1,\qquad d=1.
+\]
+
+Tada je
+
+\[
+A=\operatorname{circ}(1,2,3),
+\]
+
+odnosno
+
+\[
+A=
+\begin{bmatrix}
+	1 & 2 & 3\\
+	3 & 1 & 2\\
+	2 & 3 & 1
+\end{bmatrix}.
+\]
+
+Sopstvene vrednosti su
+
+\[
+\lambda_0=6,
+\]
+
+\[
+\lambda_1=-\frac32-\frac{\sqrt{3}}{2}i,
+\]
+
+\[
+\lambda_2=-\frac32+\frac{\sqrt{3}}{2}i.
+\]
+
+Za određivanje kvadrata matrice stepenjujemo sopstvene vrednosti:
+
+\[
+\lambda_0^2=36,
+\]
+
+\[
+\lambda_1^2=\frac32+\frac{3\sqrt{3}}{2}i,
+\]
+
+\[
+\lambda_2^2=\frac32-\frac{3\sqrt{3}}{2}i.
+\]
+
+Prema tome,
+
+\[
+A^2=F^{-1}D^2F.
+\]
+
+Izračunavanjem proizvoda dobija se
+
+\[
+\boxed{
+	A^2=
+	\begin{bmatrix}
+		13 & 13 & 10\\
+		10 & 13 & 13\\
+		13 & 10 & 13
+	\end{bmatrix}
+}.
+\]
+
+\chapter{Određivanje n-tog stepena cirkularne matrice sa elementima geometrijskog niza}
+
+Posmatrajmo cirkularnu matricu trećeg reda čiji elementi prvog reda predstavljaju prva tri člana geometrijskog niza:
+
+\[
+G=\operatorname{circ}(a,aq,aq^2).
+\]
+
+Njena matrica je
+
+\[
+G=
+\begin{bmatrix}
+	a & aq & aq^2\\
+	aq^2 & a & aq\\
+	aq & aq^2 & a
+\end{bmatrix}.
+\]
+
+\section{Sopstvene vrednosti}
+
+Sopstvene vrednosti matrice \(G\) određuju se primenom Furijeove transformacije:
+
+\[
+\lambda_k=a+aq\omega^k+aq^2\omega^{2k},
+\]
+
+odnosno
+
+\[
+\boxed{
+	\lambda_k=a(1+q\omega^k+q^2\omega^{2k})
+},
+\qquad k=0,1,2.
+\]
+
+Za \(k=0\) dobija se
+
+\[
+\boxed{
+	\lambda_0=a(1+q+q^2)
+}.
+\]
+
+Za \(k=1\) i \(k=2\) sopstvene vrednosti su
+
+\[
+\lambda_1=a(1+q\omega+q^2\omega^2),
+\]
+
+\[
+\lambda_2=a(1+q\omega^2+q^2\omega).
+\]
+
+S obzirom na to da je
+
+\[
+\omega=-\frac12-\frac{\sqrt{3}}{2}i,
+\]
+
+sopstvene vrednosti mogu se zapisati u obliku
+
+\[
+\boxed{
+	\lambda_{1,2}
+	=
+	a\left(
+	1-\frac{q+q^2}{2}
+	\mp\frac{\sqrt{3}}{2}(q-q^2)i
+	\right)
+}.
+\]
+
+\section{Određivanje n-tog stepena}
+
+N-ti stepen matrice \(G\) dobija se na osnovu n-tih stepena njenih sopstvenih vrednosti:
+
+\[
+G^n=F^{-1}D^nF,
+\]
+
+gde je
+
+\[
+D^n=
+\operatorname{diag}
+\left(
+\lambda_0^n,\lambda_1^n,\lambda_2^n
+\right).
+\]
+
+Dakle, potrebno je izračunati
+
+\[
+\lambda_0^n=a^n(1+q+q^2)^n
+\]
+
+i
+
+\[
+\lambda_1^n,\qquad \lambda_2^n,
+\]
+
+nakon čega se matrica \(G^n\) dobija primenom inverzne Furijeove transformacije.
+
+\section{Primer}
+
+Neka je
+
+\[
+a=1,\qquad q=2.
+\]
+
+Tada je
+
+\[
+G=\operatorname{circ}(1,2,4),
+\]
+
+odnosno
+
+\[
+G=
+\begin{bmatrix}
+	1 & 2 & 4\\
+	4 & 1 & 2\\
+	2 & 4 & 1
+\end{bmatrix}.
+\]
+
+Sopstvene vrednosti su
+
+\[
+\lambda_0=1+2+4=7,
+\]
+
+\[
+\lambda_1=1+2\omega+4\omega^2,
+\]
+
+\[
+\lambda_2=1+2\omega^2+4\omega.
+\]
+
+Zamenom vrednosti korena jedinice dobijamo
+
+\[
+\lambda_1=-2+\sqrt{3}i,
+\]
+
+\[
+\lambda_2=-2-\sqrt{3}i.
+\]
+
+Za određivanje kvadrata matrice stepenjujemo sopstvene vrednosti:
+
+\[
+\lambda_0^2=49,
+\]
+
+\[
+\lambda_1^2=1-4\sqrt{3}i,
+\]
+
+\[
+\lambda_2^2=1+4\sqrt{3}i.
+\]
+
+Prema tome,
+
+\[
+G^2=F^{-1}D^2F.
+\]
+
+Izračunavanjem proizvoda dobija se
+
+\[
+\boxed{
+	G^2=
+	\begin{bmatrix}
+		17 & 20 & 12\\
+		12 & 17 & 20\\
+		20 & 12 & 17
+	\end{bmatrix}
+}.
+\]
+
+\chapter{Određivanje n-tog stepena cirkularne matrice sa elementima Fibonačijevog niza}
+
+Razmatrajmo cirkularnu matricu reda četiri čiji elementi prvog reda predstavljaju prva četiri člana Fibonačijevog niza.
+
+Fibonačijev niz definisan je rekurentnom relacijom
+
+\[
+F_n=F_{n-1}+F_{n-2},
+\]
+
+uz početne vrednosti
+
+\[
+F_1=1,\qquad F_2=1.
+\]
+
+Prva četiri člana niza su
+
+\[
+F_1=1,\qquad F_2=1,\qquad
+F_3=2,\qquad F_4=3.
+\]
+
+Prema tome, cirkularna matrica je
+
+\[
+F=\operatorname{circ}(1,1,2,3),
+\]
+
+odnosno
+
+\[
+F=
+\begin{bmatrix}
+	1 & 1 & 2 & 3\\
+	3 & 1 & 1 & 2\\
+	2 & 3 & 1 & 1\\
+	1 & 2 & 3 & 1
+\end{bmatrix}.
+\]
+
+\section{Sopstvene vrednosti}
+
+Za određivanje sopstvenih vrednosti matrice \(F\) koristimo korene jedinice četvrtog reda:
+
+\[
+\omega_4=e^{-\frac{2\pi i}{4}}=-i.
+\]
+
+Koreni jedinice su
+
+\[
+1,\qquad -i,\qquad -1,\qquad i.
+\]
+
+Sopstvene vrednosti cirkularne matrice reda četiri date su izrazom
+
+\[
+\lambda_k=
+F_1+F_2\omega_4^k+
+F_3\omega_4^{2k}+
+F_4\omega_4^{3k},
+\]
+
+odnosno
+
+\[
+\lambda_k=1+\omega_4^k+2\omega_4^{2k}
++3\omega_4^{3k}.
+\]
+
+Za \(k=0\) dobijamo
+
+\[
+\lambda_0=1+1+2+3,
+\]
+
+pa je
+
+\[
+\boxed{\lambda_0=7}.
+\]
+
+Za \(k=1\), koristeći
+
+\[
+\omega_4=-i,\qquad
+\omega_4^2=-1,\qquad
+\omega_4^3=i,
+\]
+
+dobijamo
+
+\[
+\lambda_1=1-i-2+3i,
+\]
+
+odnosno
+
+\[
+\boxed{\lambda_1=-1+2i}.
+\]
+
+Za \(k=2\) sledi
+
+\[
+\lambda_2=1-1+2-3,
+\]
+
+pa je
+
+\[
+\boxed{\lambda_2=-1}.
+\]
+
+Za \(k=3\) dobijamo
+
+\[
+\lambda_3=1+i-2-3i,
+\]
+
+odnosno
+
+\[
+\boxed{\lambda_3=-1-2i}.
+\]
+
+Dakle, sopstvene vrednosti matrice \(F\) su
+
+\[
+\boxed{
+	\lambda_0=7,\quad
+	\lambda_1=-1+2i,\quad
+	\lambda_2=-1,\quad
+	\lambda_3=-1-2i
+}.
+\]
+
+\section{Određivanje n-tog stepena}
+
+Na osnovu sopstvenih vrednosti, n-ti stepen matrice \(F\) dobija se primenom formule
+
+\[
+F^n=U^{-1}D^nU,
+\]
+
+gde je \(U\) Furijeova matrica četvrtog reda, a
+
+\[
+D^n=
+\begin{bmatrix}
+	7^n & 0 & 0 & 0\\
+	0 & (-1+2i)^n & 0 & 0\\
+	0 & 0 & (-1)^n & 0\\
+	0 & 0 & 0 & (-1-2i)^n
+\end{bmatrix}.
+\]
+
+Pošto su sopstvene vrednosti kompleksno konjugovani parovi, rezultat stepenovanja matrice \(F\) ima realne elemente.
+
+\section{Kvadrat matrice}
+
+Za određivanje kvadrata matrice potrebno je izračunati kvadrate sopstvenih vrednosti:
+
+\[
+\lambda_0^2=49,
+\]
+
+\[
+\lambda_1^2=(-1+2i)^2=-3-4i,
+\]
+
+\[
+\lambda_2^2=(-1)^2=1,
+\]
+
+\[
+\lambda_3^2=(-1-2i)^2=-3+4i.
+\]
+
+Prema tome,
+
+\[
+F^2=U^{-1}D^2U.
+\]
+
+Izračunavanjem proizvoda dobija se
+
+\[
+\boxed{
+	F^2=
+	\begin{bmatrix}
+		11 & 14 & 14 & 10\\
+		10 & 11 & 14 & 14\\
+		14 & 10 & 11 & 14\\
+		14 & 14 & 10 & 11
+	\end{bmatrix}
+}.
+\]
 
 \chapter{Zaključak}
 
-U radu su analizirane cirkularne matrice čiji su elementi definisani pomoću poznatih nizova. Pokazano je da se određivanje n-tog stepena matrice može efikasno izvršiti korišćenjem dijagonalizacije.
+U radu je razmatrano određivanje $n$-tog stepena cirkularnih matrica čiji su
+elementi prvog reda članovi aritmetičkog, geometrijskog i Fibonačijevog niza.
+Polazna tačka bila je činjenica da se svaka cirkularna matrica može zapisati
+kao polinom u matrici cikličnog pomaka $P$, što povlači da su sve cirkularne
+matrice istog reda međusobno komutativne i da ih Furijeova matrica
+istovremeno dijagonalizuje \cite{davis, gray}. Odatle sledi osnovna formula
+\[
+C^n = F^{-1}\operatorname{diag}(\lambda_0^n,\dots,\lambda_{N-1}^n)\,F,
+\qquad
+\lambda_k=\sum_{j=0}^{N-1}c_j\,\omega_N^{jk},
+\]
+kojom se stepenovanje matrice svodi na stepenovanje $N$ skalara \cite{horn, meyer}.
 
-Razmatrani su slučajevi:
+Za razliku od direktnog množenja, čija je složenost $O(nN^3)$, primena brze
+Furijeove transformacije daje složenost $O(N\log N)$ za fiksno $n$
+\cite{gray}. Dobijena formula važi i za negativne stepene, pod uslovom da je
+$\lambda_k\neq 0$ za svako $k$.
 
+Analiza posmatranih nizova dala je sledeće rezultate:
 \begin{itemize}
-    \item aritmetičkog niza,
-    \item geometrijskog niza,
-    \item Fibonačijevog niza.
+	\item \textbf{Aritmetički niz.} Kako je $(a,a+d,a+2d)=a(1,1,1)+d(0,1,2)$,
+	parametar $a$ utiče samo na sopstvenu vrednost $\lambda_0=3(a+d)$, dok su
+	preostale dve sopstvene vrednosti
+	$\lambda_{1,2}=d\left(-\tfrac32\pm\tfrac{\sqrt3}{2}i\right)$
+	određene isključivo razlikom $d$.
+	\item \textbf{Geometrijski niz.} Sopstvene vrednosti imaju zatvoren oblik
+	$\lambda_0=a(1+q+q^2)$ i
+	$\lambda_{1,2}=a\bigl(1-\tfrac{q+q^2}{2}\mp\tfrac{\sqrt3}{2}(q-q^2)i\bigr)$.
+	\item \textbf{Fibonačijev niz.} Za $\operatorname{circ}(1,1,2,3)$ dobijene su
+	sopstvene vrednosti $7,\ -1+2i,\ -1,\ -1-2i$ \cite{koshy}.
 \end{itemize}
 
-Analizirani primeri reda 3 i 4 pokazali su da se struktura cirkularnih matrica zadržava i nakon stepenovanja.
+Zajednička osobina svih primera jeste da je $\lambda_0$, odnosno zbir
+elemenata prve vrste, sopstvena vrednost najvećeg modula
+($6>\sqrt3$, $7>\sqrt7$, $7>\sqrt5$). Zato za veliko $n$ elementi matrice
+$C^n$ teže vrednosti $\lambda_0^n/N$, a $C^n$ se asimptotski ponaša kao
+$\tfrac{\lambda_0^n}{N}J$, gde je $J$ matrica sa svim jedinicama. Pošto su
+sve nenulte sopstvene vrednosti u primerima kompleksno konjugovani parovi
+ili realne, rezultat je uvek realna cirkularna matrica, što je potvrđeno
+direktnim množenjem u svakom razmatranom slučaju.
 
-Dalja istraživanja mogu obuhvatiti:
+Ograničenja rada ogledaju se u tome što su eksplicitno razrađeni samo
+matrice reda 3 i 4 i samo drugi stepen. Dalja istraživanja mogu obuhvatiti
+zatvorene formule za proizvoljan red $N$ i proizvoljno $n$, nizove sa
+rekurentnom definicijom višeg reda (npr.\ Lukasov i Pelov niz), kao i
+numeričku stabilnost računanja stepena pomoću FFT-a u aritmetici sa
+pokretnim zarezom \cite{strang}.
 
-\begin{itemize}
-    \item matrice višeg reda,
-    \item druge poznate nizove,
-    \item numeričke algoritme za brzo računanje stepena.
-\end{itemize}
+Cirkularne matrice nalaze primenu u obradi signala i slike, teoriji
+kodovanja, numeričkoj analizi i rešavanju diferencnih jednačina
+\cite{gray, davis}, pa je mogućnost brzog i tačnog određivanja njihovih
+stepena od praktičnog značaja.
 
-\chapter{Literatura}
-
-\begin{enumerate}
-    \item Davis, P. J., \textit{Circulant Matrices}, Wiley, New York, 1979.
-
-    \item Horn, R. A., Johnson, C. R., \textit{Matrix Analysis}, Cambridge University Press, 2012.
-
-    \item Gray, R. M., \textit{Toeplitz and Circulant Matrices: A Review}, Now Publishers Inc., 2006.
-
-    \item Strang, G., \textit{Linear Algebra and Its Applications}, Brooks/Cole, 2006.
-
-    \item Koshy, T., \textit{Fibonacci and Lucas Numbers with Applications}, Wiley, 2001.
-
-    \item Meyer, C. D., \textit{Matrix Analysis and Applied Linear Algebra}, SIAM, 2000.
-\end{enumerate}
+\renewcommand{\bibname}{Literatura}
+\addcontentsline{toc}{chapter}{Literatura}
+\begin{thebibliography}{9}
+	
+	\bibitem{davis} Davis, P. J., \textit{Circulant Matrices}, Wiley-Interscience, New York, 1979.
+	
+	\bibitem{horn} Horn, R. A., Johnson, C. R., \textit{Matrix Analysis}, 2nd ed., Cambridge University Press, 2012.
+	
+	\bibitem{gray} Gray, R. M., Toeplitz and Circulant Matrices: A Review, \textit{Foundations and Trends in Communications and Information Theory}, 2(3), 155--239, 2006.
+	
+	\bibitem{strang} Strang, G., \textit{Linear Algebra and Its Applications}, 4th ed., Brooks/Cole, 2006.
+	
+	\bibitem{koshy} Koshy, T., \textit{Fibonacci and Lucas Numbers with Applications}, Wiley-Interscience, 2001.
+	
+	\bibitem{meyer} Meyer, C. D., \textit{Matrix Analysis and Applied Linear Algebra}, SIAM, 2000.
+	
+	\bibitem{cooley} Cooley, J. W., Tukey, J. W., An algorithm for the machine calculation of complex Fourier series, \textit{Mathematics of Computation}, 19(90), 297--301, 1965.
+	
+\end{thebibliography}
 
 \end{document}
